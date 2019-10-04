@@ -1,0 +1,27 @@
+{
+  "name": "AirbnKids",
+  "version": "1.0",
+  "description": "AirbnKids indicates Airbnb listings that are small kids friendly.",
+
+  "browser_action": {
+  "default_icon": "AirbnKids.png"
+},
+"background": {
+  "scripts": ["background.js"]
+},
+"content_scripts": [
+  {
+    "matches": [
+      "https://www.airbnb.com/s/*",
+      "https://www.airbnb.com/rooms/*"
+    ],
+    "js": ["jquery-2.2.4.min.js", "content.js"]
+  }
+],
+"web_accessible_resources": ["AirbnKids-48.png"],
+"permissions": [
+  "http://localhost/*",
+  "activeTab"
+],
+  "manifest_version": 2
+}
