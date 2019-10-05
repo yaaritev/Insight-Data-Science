@@ -39,22 +39,26 @@ chrome.runtime.onMessage.addListener(
               if (request.status === 200) {
                 console.log("Success");
                 var data=request.responseText;
-                //console.log(data);
                 var ReviewHTML = parser.parseFromString(data, "text/html");
                 let summary = ReviewHTML.getElementById('details');
-                console.log('This is a listing summary: ' + summary.textContent)
+                console.log('This is a listing summary: ' + summary.innerText)
                 let reviews = ReviewHTML.getElementById('reviews');
-                console.log(reviews);
                 let totalReviews = reviews.querySelectorAll('._s1tlw0m');
-                //console.log(totalReviews);
-                if (totalReviews.textContent === 'No reviews (yet)'){
+                // console.log(totalReviews);
+                if (totalReviews.innerText === 'No reviews (yet)'){
                   console.log('No Reviews');
                 } else{
-                  let review = reviews.querySelectorAll('._czm8crp');
-                  for(let k = 0; k < review.length; k++){
-                  console.log("review - " + review[k].innerText)
-                  chrome.runtime.sendMessage({message: "These are the reviews", reviewsPerListing: review[k].innerText});
+                  let review2 = reviews.querySelectorAll('[data-review-id]');
+                  for(let l = 0; l < review2.length; l++){
+                  console.log("review " + l + ": " + review2[l].innerText)
+                //}
+                //  let review = reviews.querySelectorAll('._czm8crp');
+                  //for(let k = 0; k < review.length; k++){
+                  //console.log("review - " + review[k].innerText)
+                //  console.log(review.innerText)
+                 chrome.runtime.sendMessage({message: "These are the reviews", listing_id: listings[j].id.split("-")[1], reviewsPerListing: review2[l].innerText});
                   }
+                //  chrome.runtime.sendMessage({message: "These are the reviews", listing_id: listings[j].id.split("-")[1], reviewsPerListing: review.innerText});
                   //Send review.innerText to background
                 }
                 }

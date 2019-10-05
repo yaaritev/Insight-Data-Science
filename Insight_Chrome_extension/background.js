@@ -8,13 +8,15 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 })
 });
 
+//list_reviews_perList = list();
 
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 if(request.message == "These are the reviews"){
   console.log('Got the reviews');
-  //var listingReviews = new Array();
+  listingId = request.listing_id;
   listingReviews =  request.reviewsPerListing;
-  console.log('Made it ' + listingReviews)
+
+  console.log(listingId + listingReviews)
   let myvar = 5;
   const url = "http://localhost:5000"
   //Send a big dictionary with all reviews per key listing.
