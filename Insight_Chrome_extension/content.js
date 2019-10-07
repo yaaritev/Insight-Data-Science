@@ -29,6 +29,7 @@ chrome.runtime.onMessage.addListener(
     if (request.message == "hi_there") {
       console.log('Made it in here too!')
       let listings = document.querySelectorAll("[id^=listing-]");
+      //var list_listings = [];
       for(let j = 0; j < listings.length; j++){
            var urlListing = 'https://www.airbnb.com/rooms/' + listings[j].id.split("-")[1];
            console.log('These are all the listings on this page ' + urlListing)
@@ -48,17 +49,21 @@ chrome.runtime.onMessage.addListener(
                 if (totalReviews.innerText === 'No reviews (yet)'){
                   console.log('No Reviews');
                 } else{
-                  let review2 = reviews.querySelectorAll('[data-review-id]');
-                  for(let l = 0; l < review2.length; l++){
-                  console.log("review " + l + ": " + review2[l].innerText)
+                  let review = reviews.querySelectorAll('[data-review-id]');
+                  var list_reviews = [];
+                  for(let l = 0; l < review.length; l++){
+                  console.log("review " + l + ": " + review[l].innerText)
+                  list_reviews.push(review[l].innerText)
                 //}
                 //  let review = reviews.querySelectorAll('._czm8crp');
                   //for(let k = 0; k < review.length; k++){
                   //console.log("review - " + review[k].innerText)
                 //  console.log(review.innerText)
-                 chrome.runtime.sendMessage({message: "These are the reviews", listing_id: listings[j].id.split("-")[1], reviewsPerListing: review2[l].innerText});
+                 //chrome.runtime.sendMessage({message: "These are the reviews", listing_id: listings[j].id.split("-")[1], reviewsPerListing: review[l].innerText});
                   }
-                //  chrome.runtime.sendMessage({message: "These are the reviews", listing_id: listings[j].id.split("-")[1], reviewsPerListing: review.innerText});
+                  var listing_char = {id: listings[j].id.split("-")[1], all_reviews: list_reviews, description: summary.innerText};
+                  //list_listings.push(listing_char);
+                  chrome.runtime.sendMessage({message: "These are the reviews", reviewsPerListing: listing_char});
                   //Send review.innerText to background
                 }
                 }
@@ -68,5 +73,27 @@ chrome.runtime.onMessage.addListener(
         request.send(null);
       }
       }
+  }
+)
+
+
+
+
+
+chrome.runtime.onMessage.addListener(
+  function(request,sender,sendResponse) {
+    if (request.message == "got_label") {
+      console.log('Yay! Made it in!')
+      //var imgURL = chrome.runtime.getURL("images/myimage.png");
+      //document.getElementById("someImage").src = imgURL;
+        if (request.labelKidFriendly == '1') {
+          const div = document.getElementById("listing-" + request.listingID);
+          const imgURL = chrome.extension.getURL('AirbnKids-48.png');
+          const img = document.createElement("img");
+          img.id = 'emojy';
+          img.src = imgURL;
+          div.appendChild(img);
+    }
+    }
   }
 )

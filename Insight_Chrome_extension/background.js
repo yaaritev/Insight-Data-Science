@@ -13,22 +13,34 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 if(request.message == "These are the reviews"){
   console.log('Got the reviews');
-  listingId = request.listing_id;
+  //listingId = request.listing_id;
   listingReviews =  request.reviewsPerListing;
 
-  console.log(listingId + listingReviews)
-  let myvar = 5;
+  console.log(listingReviews)
   const url = "http://localhost:5000"
   //Send a big dictionary with all reviews per key listing.
-  listingsRev = {"listings": listingReviews}
+  //listingsRev = {"listings": listingReviews}
 
   fetch( url, {
               mode: 'cors',
               method: 'post',
               headers: { "Content-type": "application/json; charset=UTF-8" },
-              body:   JSON.stringify(listingsRev)
+              body:   JSON.stringify(listingReviews)
             })
-        }
+            .then(function(response) {
+                        if (!response.ok) throw response;
+                        else return response.text();
+                        })
+                        .then(function(text) {
+                            if(text) {
+                                console.log(text);
+                                chrome.runtime.sendMessage({"message": "got_label", "labelKidFriendly": text, "listingID": request.reviewsPerListing['id']})
+                            }
+                        })
+                        .catch(function(err) {
+                            console.error(err);
+                        });
+  }
 })
 
 
