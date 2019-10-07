@@ -72,7 +72,6 @@ def airbnTots(data):
     #Otherwise, 'reviews_labels' contains only zeros - no parent reviews - and we are in the case of Model 2
     #Thus, we now check for the values of 'reviews_labels'
 
-
     if 1 in reviews_labels:
         listing_label = '0'
     elif 2 in reviews_labels:

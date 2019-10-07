@@ -33,12 +33,12 @@ if(request.message == "These are the reviews"){
                         })
                         .then(function(text) {
                             if(text) {
-                                console.log(text);
+                                console.log(JSON.parse(text));
                                 chrome.runtime.sendMessage({"message": "got_label", "labelKidFriendly": text, "listingID": request.reviewsPerListing['id']})
                             }
                         })
                         .catch(function(err) {
-                            console.error(err);
+                            console.log(err);
                         });
   }
 })

@@ -14,10 +14,10 @@ def index():
         label = airbnTots(data)
         print(label)
 
-    #return label
+    return label
 
 
 
-      return render_template("index.html",
-       title = 'Home', user = { 'nickname': 'Miguel' },
-       )
+      # return render_template("index.html",
+      #  title = 'Home', user = { 'nickname': 'Miguel' },
+      #  )
