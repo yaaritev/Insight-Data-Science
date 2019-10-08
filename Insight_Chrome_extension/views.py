@@ -1,6 +1,6 @@
 from app import flask_instance
 from flask import Flask, request, jsonify, render_template, url_for
-from joblib import load
+
 #
 # from flask import render_template
 # from flask import request
@@ -14,7 +14,7 @@ def index():
 
         data = request.get_json(force=True)
         print('I made it!*****')
-        print(data)
+        #print(data)
         label = airbnTots(data)
         print(label)
 

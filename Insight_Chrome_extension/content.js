@@ -6,22 +6,22 @@ document.body.appendChild(div);
 */
 
 
-
-chrome.runtime.onMessage.addListener(
-  function(request,sender,sendResponse) {
-    if (request.message == "hi_there") {
-      console.log('Made it in!')
-      //var imgURL = chrome.runtime.getURL("images/myimage.png");
-      //document.getElementById("someImage").src = imgURL;
-      const div = document.getElementById("listing-14613773");
-      const imgURL = chrome.extension.getURL('AirbnKids-48.png');
-      const img = document.createElement("img");
-      img.id = 'emojy';
-      img.src = imgURL;
-      div.appendChild(img);
-    }
-  }
-)
+// 
+// chrome.runtime.onMessage.addListener(
+//   function(request,sender,sendResponse) {
+//     if (request.message == "hi_there") {
+//       console.log('Made it in!')
+//       //var imgURL = chrome.runtime.getURL("images/myimage.png");
+//       //document.getElementById("someImage").src = imgURL;
+//       const div = document.getElementById("listing-13410504");
+//       const imgURL = chrome.extension.getURL('AirbnKids-48.png');
+//       const img = document.createElement("img");
+//       img.id = 'emojy';
+//       img.src = imgURL;
+//       div.appendChild(img);
+//     }
+//   }
+// )
 
 
 chrome.runtime.onMessage.addListener(
@@ -83,7 +83,7 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onMessage.addListener(
   function(request,sender,sendResponse) {
     if (request.message == "got_label") {
-      console.log('Yay! Made it in!')
+     console.log('Yay! Made it in!')
       //var imgURL = chrome.runtime.getURL("images/myimage.png");
       //document.getElementById("someImage").src = imgURL;
         if (request.labelKidFriendly == '1') {

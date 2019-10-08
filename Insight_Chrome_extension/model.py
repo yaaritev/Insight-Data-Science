@@ -1,5 +1,5 @@
 def airbnTots(data):
-
+    print("Hello model!*******************************************************")
 #########################################################################################################################################
     # Import libraries
     import pandas as pd
@@ -72,11 +72,11 @@ def airbnTots(data):
     #Otherwise, 'reviews_labels' contains only zeros - no parent reviews - and we are in the case of Model 2
     #Thus, we now check for the values of 'reviews_labels'
 
-    pkl_filename = './flask/AirbnTots_model.pkl'
-
-    with open(pkl_filename, 'rb') as file:
-	    pickle_airbnTots = pickle.load(file)
-	    print('I got the pickle!')
+    # pkl_filename = './flaskexample/AirbnTots_model.pkl'
+    #
+    # with open(pkl_filename, 'rb') as file:
+	#     pickle_airbnTots = pickle.load(file)
+	#     print('I got the pickle!')
 
 
 
@@ -86,8 +86,8 @@ def airbnTots(data):
         listing_label = '1'
     else:
         listing_data = vader_score(data['all_reviews'])
-
-        if pickle_airbnTots.predict(listing_data) == 1:
+        if (listing_data[0].astype(float) > 0.25) &  (listing_data[0].astype(float) > 0.25):
+        #if pickle_airbnTots.predict(listing_data) == 1:
             listing_label = '1'
         else:
             listing_label = '0'

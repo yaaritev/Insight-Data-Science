@@ -33,8 +33,13 @@ if(request.message == "These are the reviews"){
                         })
                         .then(function(text) {
                             if(text) {
+                              console.log('**************')
                                 console.log(text);
-                                chrome.runtime.sendMessage({"message": "got_label", "labelKidFriendly": text, "listingID": request.reviewsPerListing['id']})
+                                console.log(request.reviewsPerListing['id']);
+                                chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                                  let activeTab = tabs[0];
+                                chrome.tabs.sendMessage(activeTab.id, {"message": "got_label", labelKidFriendly: text, listingID: request.reviewsPerListing['id']})
+                              })
                             }
                         })
                         .catch(function(err) {
