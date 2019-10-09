@@ -1,4 +1,4 @@
-// AirbnTots Chrom extension, Yaarit Even, e-mail: yaarite@gmail.com
+// AirbnTots Chrome extension, Yaarit Even, e-mail: yaarite@gmail.com
 // The background.js file passes the Airbnb data from the content file to the views.py file
 // The background.js file passes the listing label from views back to content
 

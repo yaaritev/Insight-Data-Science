@@ -1,4 +1,4 @@
-// AirbnTots Chrom extension, Yaarit Even, e-mail: yaarite@gmail.com
+// AirbnTots Chrome extension, Yaarit Even, e-mail: yaarite@gmail.com
 // The content.js file reads the data from the Airbnb website and sends it to the background.js file.
 // The content.js file recieves the model result for each listing from the background.js file, and displayes the AirbnTots image
 // on the Airbnb website, according to the model result.

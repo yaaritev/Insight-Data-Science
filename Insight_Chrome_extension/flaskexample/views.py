@@ -1,4 +1,4 @@
-# AirbnTots Chrom extension, Yaarit Even, e-mail: yaarite@gmail.com
+# AirbnTots Chrome extension, Yaarit Even, e-mail: yaarite@gmail.com
 
 # The views.py file runs the model on the Airbnb data and returns the label to the background file.
 
