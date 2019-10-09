@@ -1,10 +1,15 @@
-def airbnTots(data):
+# AirbnTots model, Yaarit Even, e-mail: yaarite@gmail.com
+# Input: Airbnb listings' reviews
+# Output: Binary score indicating if the listing is young kid-friendly (1 if yes, 0 if no)
 
+
+def airbnTots(data):
+    print("Hello model!")
 #########################################################################################################################################
     # Import libraries
     import pandas as pd
     import numpy as np
-    # Import libraries for the model
+    import pickle
     from sklearn import ensemble
     from sklearn.model_selection import train_test_split
 
@@ -35,11 +40,11 @@ def airbnTots(data):
     #Model 1 - If able to identify existense of parents reviews
     #If positive, return listing is kid-friendly
     #If negative, return listing is not kid-friendly)
-    #Model 2 - If not able to identify existense of parent reviewsPerListing
+    #Model 2 - If not able to identify existense of parent reviews
     # continue to the Random Forest model
 
 
-    #list of specific strings I want to check for in tweets and reply to
+    #list of specific strings indicating parents reviews
     parentWords = ['baby', 'babies','toddler','toddlers', 'infant', 'infants', '1 year old', '2 year old', '3 year old', '4 year old', '5 year old', 'young kids', 'small kids','kiddie','kiddos', 'kiddo', 'preschooler','kindergartner']
     #list of specific strings indicating non-parents reviews
     nonParentsWords = ["like a baby","like babies"]
@@ -68,9 +73,17 @@ def airbnTots(data):
             #print('not a parent review')
             reviews_labels.append(0)
 
-    #If the list 'reviews_labels' containsvalues in {1,2} then there exists parent reviews and we are in the case of Model 1
+    #If the list 'reviews_labels' contains values in {1,2} then there exists parent reviews and we are in the case of Model 1
     #Otherwise, 'reviews_labels' contains only zeros - no parent reviews - and we are in the case of Model 2
     #Thus, we now check for the values of 'reviews_labels'
+
+    # pkl_filename = './flaskexample/AirbnTots_model.pkl'
+    ## Opening the pickle model
+    # with open(pkl_filename, 'rb') as file:
+	#     pickle_airbnTots = pickle.load(file)
+	#     print('I got the pickle!')
+
+
 
     if 1 in reviews_labels:
         listing_label = '0'
@@ -78,25 +91,10 @@ def airbnTots(data):
         listing_label = '1'
     else:
         listing_data = vader_score(data['all_reviews'])
-
         if (listing_data[0].astype(float) > 0.25) &  (listing_data[0].astype(float) > 0.25):
+        #if pickle_airbnTots.predict(listing_data) == 1:
             listing_label = '1'
         else:
             listing_label = '0'
 
     return listing_label
-
-
-
-
-
-
-
-
-
-
-
-    # Opening the pickle model
-
-    #with open(pkl_filename, 'rb') as file:
-    #    pickle_model = pickle.load(file)

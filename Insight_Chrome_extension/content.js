@@ -1,33 +1,12 @@
-/*document.querySelectorAll('[id^=review-]')
-var div = document.getElementby("DIV");
-div.id = "someName";
-div.appendChild(img);
-document.body.appendChild(div);
-*/
-
-
-// 
-// chrome.runtime.onMessage.addListener(
-//   function(request,sender,sendResponse) {
-//     if (request.message == "hi_there") {
-//       console.log('Made it in!')
-//       //var imgURL = chrome.runtime.getURL("images/myimage.png");
-//       //document.getElementById("someImage").src = imgURL;
-//       const div = document.getElementById("listing-13410504");
-//       const imgURL = chrome.extension.getURL('AirbnKids-48.png');
-//       const img = document.createElement("img");
-//       img.id = 'emojy';
-//       img.src = imgURL;
-//       div.appendChild(img);
-//     }
-//   }
-// )
-
+// AirbnTots Chrom extension, Yaarit Even, e-mail: yaarite@gmail.com
+// The content.js file reads the data from the Airbnb website and sends it to the background.js file.
+// The content.js file recieves the model result for each listing from the background.js file, and displayes the AirbnTots image
+// on the Airbnb website, according to the model result.
 
 chrome.runtime.onMessage.addListener(
   function(request,sender,sendResponse) {
     if (request.message == "hi_there") {
-      console.log('Made it in here too!')
+      console.log('Hello content file')
       let listings = document.querySelectorAll("[id^=listing-]");
       //var list_listings = [];
       for(let j = 0; j < listings.length; j++){
@@ -83,12 +62,12 @@ chrome.runtime.onMessage.addListener(
 chrome.runtime.onMessage.addListener(
   function(request,sender,sendResponse) {
     if (request.message == "got_label") {
-     console.log('Yay! Made it in!')
+     console.log('Got labels!')
       //var imgURL = chrome.runtime.getURL("images/myimage.png");
       //document.getElementById("someImage").src = imgURL;
         if (request.labelKidFriendly == '1') {
           const div = document.getElementById("listing-" + request.listingID);
-          const imgURL = chrome.extension.getURL('AirbnKids-48.png');
+          const imgURL = chrome.extension.getURL('AirbnTots_rec.png');
           const img = document.createElement("img");
           img.id = 'emojy';
           img.src = imgURL;
