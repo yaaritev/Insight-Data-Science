@@ -1,4 +1,5 @@
 // AirbnTots Chrome extension, Yaarit Even, e-mail: yaarite@gmail.com
+
 // The content.js file reads the data from the Airbnb website and sends it to the background.js file.
 // The content.js file recieves the model result for each listing from the background.js file, and displayes the AirbnTots image
 // on the Airbnb website, according to the model result.
@@ -63,8 +64,6 @@ chrome.runtime.onMessage.addListener(
   function(request,sender,sendResponse) {
     if (request.message == "got_label") {
      console.log('Got labels!')
-      //var imgURL = chrome.runtime.getURL("images/myimage.png");
-      //document.getElementById("someImage").src = imgURL;
         if (request.labelKidFriendly == '1') {
           const div = document.getElementById("listing-" + request.listingID);
           const imgURL = chrome.extension.getURL('AirbnTots_rec.png');
